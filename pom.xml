@@ -88,7 +88,7 @@
 					<encoding>UTF-8</encoding>
 					<!--配置本地jar包在项目的存放路径 找不到资源-->
 					<compilerArguments>
-						<extdirs>${project.basedir}/libs</extdirs>
+						<extdirs>${project.basedir}/lib</extdirs>
 					</compilerArguments>
 				</configuration>
 			</plugin>
