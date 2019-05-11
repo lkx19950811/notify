@@ -8,6 +8,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,10 +23,9 @@ import java.util.Map;
  * @create 2018-03-13 上午 2:11
  */
 @RestController
-@RequestMapping(value = "/test")
 public class TestController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());//
-    @RequestMapping(value = "show",produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/test/show/",produces = MediaType.TEXT_PLAIN_VALUE)
     public String show(HttpServletRequest request) throws Exception {
         Map<String,String[]> map = request.getParameterMap();
         String str = DataHelper.getStrFromREQ(request);
@@ -59,6 +59,19 @@ public class TestController {
             }
             return "SUCCESS";
         }
+    }
+    @RequestMapping(value = "/show/{show}",produces = MediaType.TEXT_PLAIN_VALUE)
+    public String showStats(HttpServletRequest request, @PathVariable("show")String show) throws Exception {
+        Map<String,String[]> map = request.getParameterMap();
+        String str = DataHelper.getStrFromREQ(request);
+        if (map.size()==0){
+            logger.info("在body中的参数:{}",str);
+        }else {
+            StringBuilder sb = new StringBuilder();
+            map.forEach((k,v)-> sb.append(k).append("=").append(v[0]).append("&"));
+            logger.info("使用 参数{}",sb.toString());
+        }
+        return show;
     }
     private String parseResult(String responseJson, String key) throws Exception {
         // 解签用的证书，请换成商户自己下载的证书
