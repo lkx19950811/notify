@@ -95,7 +95,7 @@
 		</plugins>
 		<resources>
 			<resource>
-				<directory>libs</directory>
+				<directory>lib</directory>
 				<targetPath>BOOT-INF/lib/</targetPath><!-- 复制不属于Maven库的jar到lib中 -->
 				<includes>
 					<include>**/*.jar</include>

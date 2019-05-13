@@ -25,7 +25,7 @@ import java.util.Map;
 @RestController
 public class TestController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());//
-    @RequestMapping(value = "/test/show/",produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/test/show",produces = MediaType.TEXT_PLAIN_VALUE)
     public String show(HttpServletRequest request) throws Exception {
         Map<String,String[]> map = request.getParameterMap();
         String str = DataHelper.getStrFromREQ(request);
